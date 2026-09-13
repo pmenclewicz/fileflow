@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pl" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileFlow AI - Inteligentna Organizacja Plików</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a',
+                            950: '#0b1329',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        /* Custom Glowing and Glass Effects */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, rgba(147, 51, 234, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .perspective-container {
+            perspective: 1200px;
+        }
+
+        .tilted-app-preview {
+            transform: rotateX(8deg) rotateY(-12deg) rotateZ(2deg);
+            transition: all 0.5s ease-out;
+            box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(37, 99, 235, 0.3);
+        }
+
+        .tilted-app-preview:hover {
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(37, 99, 235, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#070c18] text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Background Glow Effect -->
+    <div class="hero-glow"></div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-brand-500/30">
+                    <i data-lucide="folder-git-2" class="w-6 h-6 text-white"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+                    FileFlow <span class="text-brand-500 font-extrabold">AI</span>
+                </span>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-brand-500 transition-colors">Możliwości</a>
+                <a href="#how-it-works" class="hover:text-brand-500 transition-colors">Jak to działa</a>
+                <a href="#download" class="hover:text-brand-500 transition-colors">Pobierz</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#download" class="bg-brand-600 hover:bg-brand-500 text-white font-medium px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/25 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 text-sm">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Pobierz Program</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Hero Section -->
+    <main class="relative z-10 pt-12 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold uppercase tracking-wider mb-6">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    Zasilany przez Google Gemini 1.5 / 2.5
+                </div>
+                
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                    Inteligentne porządkowanie plików z napędem <span class="bg-gradient-to-r from-brand-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">AI</span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-slate-400 font-normal leading-relaxed mb-10">
+                    Zapomnij o bałaganie w folderze Pobrane i na Biurku. <strong>FileFlow AI</strong> analizuje zawartość Twoich dokumentów oraz obrazów, tworząc automatyczne reguły segregacji w ułamku sekundy.
+                </p>
+
+                <!-- Quick Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+                    <a href="#download" class="w-full sm:w-auto bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-xl shadow-brand-600/30 flex items-center justify-center gap-3 text-base transition-all transform hover:-translate-y-0.5">
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                        Pobierz dla Windows (v0.1.0)
+                    </a>
+                    <a href="#features" class="w-full sm:w-auto glass-panel hover:bg-slate-800/80 text-slate-200 font-semibold px-8 py-4 rounded-2xl border border-slate-700/60 flex items-center justify-center gap-2 text-base transition-all">
+                        <i data-lucide="play-circle" class="w-5 h-5 text-brand-400"></i>
+                        Poznaj funkcje
+                    </a>
+                </div>
+
+                <p class="text-xs text-slate-500 flex items-center justify-center gap-4">
+                    <span><i data-lucide="shield-check" class="w-4 h-4 inline mr-1 text-emerald-400"></i> Bezpieczne i lokalne przesyłanie</span>
+                    <span>•</span>
+                    <span><i data-lucide="zap" class="w-4 h-4 inline mr-1 text-amber-400"></i> Szybka edycja promptu</span>
+                </p>
+            </div>
+
+            <!-- Tilted App Screenshot Preview -->
+            <div class="perspective-container my-12 flex justify-center">
+                <div class="tilted-app-preview rounded-2xl overflow-hidden border border-slate-700/80 max-w-5xl w-full bg-slate-900">
+                    <div class="bg-slate-800/90 px-4 py-2.5 flex items-center gap-2 border-b border-slate-700/50">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                        </div>
+                        <span class="text-xs text-slate-400 font-medium ml-2">fileflow-ai - Podgląd aplikacji</span>
+                    </div>
+                    <img src="watermarked_img_5615279888949371863.jpg" alt="Zrzut ekranu aplikacji FileFlow AI" class="w-full h-auto object-cover display-block">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-20 relative z-10 bg-slate-950/50 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-white mb-4">Dlaczego warto wybrać FileFlow AI?</h2>
+                <p class="text-slate-400">Aplikacja łączy moc sztucznej inteligencji z wygodnym interfejsem graficznym, eliminując konieczność ręcznego tworzenia skomplikowanych filtrów.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-panel p-8 rounded-2xl relative group hover:border-brand-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Integracja z Google Gemini</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Wykorzystaj darmowe modele Gemini 1.5 lub 2.5 Flash. AI inteligentnie sugeruje docelowe foldery na podstawie nazw, treści dokumentów oraz miniatur zdjęć.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-panel p-8 rounded-2xl relative group hover:border-brand-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="sliders" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Pełna kontrola nad regułami</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Dodawaj własne reguły ma maseczki rozszerzeń (`*.pdf`, `faktura`), modyfikuj systemowy prompt lub zdaj się w 100% na propozycje sztucznej inteligencji.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-panel p-8 rounded-2xl relative group hover:border-brand-500/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="eye" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Podgląd przed wykonaniem</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Nigdy nie stracisz kontroli nad plikami. Przycisk "Generuj podgląd docelowy" pozwala dokładnie przeanalizować akcje przed ich faktycznym wykonaniem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="py-24 relative z-10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-500/30 relative overflow-hidden text-center">
+                <!-- Decorative Glow Background -->
+                <div class="absolute -right-20 -top-20 w-72 h-72 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Pobierz FileFlow AI</h2>
+                <p class="text-slate-300 max-w-xl mx-auto mb-10 text-sm sm:text-base">
+                    Wybierz wersję dostosowaną do Twoich potrzeb. Wersja instalacyjna automatycznie konfiguruje skróty, natomiast wersja Portable nie wymaga instalacji.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto">
+                    <!-- Option 1: Installer -->
+                    <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-700/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-semibold px-3 py-1 rounded-full">Zalecana</span>
+                                <i data-lucide="package" class="w-6 h-6 text-brand-400"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">Instalator Windows</h3>
+                            <p class="text-xs text-slate-400 mb-6">Wersja pełna z automatycznym instalatorem dla systemu Windows 64-bit.</p>
+                        </div>
+                        <div>
+                            <a href="fileflow-ai_0.1.0_x64-setup.exe" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm transition-all shadow-lg shadow-brand-600/20">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>Pobierz Setup (.exe)</span>
+                            </a>
+                            <span class="block text-[11px] text-slate-500 text-center mt-2">Plik: `fileflow-ai_0.1.0_x64-setup.exe`</span>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Portable -->
+                    <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-700/80 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="bg-slate-700/50 text-slate-300 text-xs font-semibold px-3 py-1 rounded-full">Bez instalacji</span>
+                                <i data-lucide="hard-drive" class="w-6 h-6 text-indigo-400"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-white mb-1">Wersja Portable</h3>
+                            <p class="text-xs text-slate-400 mb-6">Pobierz i uruchom od razu, idealna na pendrive lub szybkie testy.</p>
+                        </div>
+                        <div>
+                            <a href="fileflow-ai.exe" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm border border-slate-600/50 transition-all">
+                                <i data-lucide="download" class="w-4 h-4"></i>
+                                <span>Pobierz Wersję Portable</span>
+                            </a>
+                            <span class="block text-[11px] text-slate-500 text-center mt-2">Plik: `fileflow-ai.exe`</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-slate-800/80 py-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-sm">
+                    FF
+                </div>
+                <span class="text-sm font-semibold text-slate-300">FileFlow AI</span>
+            </div>
+            
+            <p class="text-xs text-slate-500">
+                Copyright © 2026 Paweł Menclewicz. Wszelkie prawa zastrzeżone.
+            </p>
+
+            <div class="flex items-center gap-4 text-xs">
+                <a href="https://buycoffee.to" target="_blank" rel="noopener noreferrer" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-colors">
+                    <i data-lucide="coffee" class="w-3.5 h-3.5"></i>
+                    <span>Postaw mi kawę</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
